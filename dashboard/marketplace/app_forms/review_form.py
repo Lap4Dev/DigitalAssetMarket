@@ -5,4 +5,4 @@ from ..app_models import Review, ConstantsReview
 class ReviewForm(ChoicesModelForm):
     class Meta:
         model = Review
-        fields = ConstantsReview.get_fields()
+        fields = ConstantsReview.get_fields(exclude=['review_date'])

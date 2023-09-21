@@ -15,8 +15,13 @@ class BaseConstants:
         return max(max(len(str(choice[0])), len(str(choice[1]))) for choice in cls.get_choices())
 
     @classmethod
-    def get_fields(cls) -> list:
-        return [attr for attr, value in cls.__annotations__.items()]
+    def get_fields(cls, exclude=None):
+        if exclude is None:
+            exclude = []
+
+        field_names = list(cls.__annotations__.keys())
+
+        return [field for field in field_names if field not in exclude]
 
 
 @dataclass
@@ -83,13 +88,13 @@ class ConstantsFile(BaseConstants):
 
 
 class ConstantsReview(BaseConstants):
-    review_id = 'Review ID'
-    review_message = 'Message'
-    review_rate = 'Rate'
-    review_date = 'Review date'
-    owner_user = 'User'
-    file = 'File'
+    review_id: str = 'Review ID'
+    review_message: str = 'Message'
+    review_rate: str = 'Rate'
+    review_date: str = 'Review date'
+    owner_user: str = 'User'
+    file: str = 'File'
 
     class Meta:
-        verbose_name = 'Review'
-        verbose_name_plural = 'Reviews'
+        verbose_name: str = 'Review'
+        verbose_name_plural: str = 'Reviews'

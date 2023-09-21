@@ -30,7 +30,7 @@ class File(models.Model):
     )
 
     def __str__(self):
-        return f'File #{self.file_id} of ({self.owner_user})'
+        return f'File: {self.file_name} of {self.owner_user}'
 
     class Meta:
         verbose_name = ConstantsFile.Meta.verbose_name

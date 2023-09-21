@@ -22,7 +22,7 @@ class TelegramUser(models.Model):
     rating = models.DecimalField(verbose_name=ConstantsTelegramUser.rating, max_digits=3, decimal_places=2)
 
     def __str__(self):
-        return f'User #{self.user_id}'
+        return f'User: {self.username}({self.user_id})'
 
     class Meta:
         verbose_name = ConstantsTelegramUser.Meta.verbose_name
