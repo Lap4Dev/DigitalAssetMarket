@@ -45,7 +45,7 @@ class SupportedWalletSubnetworks(BaseConstants):
 class StatusState(BaseConstants):
     confirmed: str = 'Confirmed'
     canceled: str = 'Canceled'
-    on_moderation: str = 'Moderation'
+    in_process: str = 'In process'
 
 
 class ConstantsTelegramUser(BaseConstants):
@@ -64,6 +64,7 @@ class ConstantsWallet(BaseConstants):
     wallet_id: str = 'Wallet ID'
     user: str = 'User'
     wallet_address: str = 'Wallet address'
+    wallet_private_key: str = 'Wallet private key'
     wallet_currency: str = 'Wallet currency'
     wallet_subnetwork: str = 'Wallet subnetwork'
 
@@ -98,3 +99,17 @@ class ConstantsReview(BaseConstants):
     class Meta:
         verbose_name: str = 'Review'
         verbose_name_plural: str = 'Reviews'
+
+
+class ConstantsTransaction(BaseConstants):
+    transaction_id: str = 'Transaction ID'
+    wallet: str = 'Wallet'
+    transfer_amount: str = 'Transfer amount'
+    transaction_hash: str = 'Transaction hash'
+    transaction_status: str = 'Status'
+    created_at: str = 'Created at'
+    updated_at: str = 'Updated at'
+
+    class Meta:
+        verbose_name: str = 'Transaction'
+        verbose_name_plural: str = 'Transactions'

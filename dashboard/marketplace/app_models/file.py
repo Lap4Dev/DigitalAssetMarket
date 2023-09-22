@@ -1,5 +1,6 @@
 import uuid
 
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from . import TelegramUser
@@ -20,7 +21,12 @@ class File(models.Model):
     file_name = models.CharField(verbose_name=ConstantsFile.file_name, max_length=45)
     file_description = models.TextField(verbose_name=ConstantsFile.file_description)
     file_dir = models.CharField(verbose_name=ConstantsFile.file_dir, max_length=255)
-    file_price = models.DecimalField(verbose_name=ConstantsFile.file_price, max_digits=10, decimal_places=2)
+    file_price = models.DecimalField(
+        verbose_name=ConstantsFile.file_price,
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
     file_pub_date = models.DateField(verbose_name=ConstantsFile.file_pub_date)
 
     file_status = models.CharField(

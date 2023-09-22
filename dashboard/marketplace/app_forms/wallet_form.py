@@ -5,4 +5,4 @@ from ..app_models import Wallet, ConstantsWallet
 class WalletForm(ChoicesModelForm):
     class Meta:
         model = Wallet
-        fields = ConstantsWallet.get_fields()
+        fields = ConstantsWallet.get_fields(exclude=['wallet_private_key'])
