@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from telegram_models.profile import TelegramProfile
+from dashboard.marketplace.dals.telegram_user_dal import ShowUserSchema
 
 
 class BotCommand:
@@ -66,9 +66,9 @@ class Messages:
                       'of file exchange, where security and convenience take precedence!'
 
     @staticmethod
-    def get_profile_message(profile_info: TelegramProfile):
+    def get_profile_message(profile_info: ShowUserSchema):
 
-        return f"🥷 <b>{profile_info.username}</b> <b>[{profile_info.chat_id}]</b>\n\n" \
+        return f"🥷 <b>{profile_info.username}</b> <b>[{profile_info.user_id}]</b>\n\n" \
                f"💰 Balance: <code>{profile_info.balance}</code>\n\n" \
                f"📉 Number of Purchased Files: <code>{profile_info.purchased_files_count}</code>\n\n" \
                f"📈 Number of Sold Files: <code>{profile_info.sold_files_count}</code>\n\n" \
