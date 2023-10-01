@@ -54,6 +54,7 @@ class ConstantsTelegramUser(BaseConstants):
     role: str = 'Role'
     balance: str = 'USDT Balance'
     rating: str = 'Rating'
+    created_at: str = 'Created at'
 
     class Meta:
         verbose_name = 'User'

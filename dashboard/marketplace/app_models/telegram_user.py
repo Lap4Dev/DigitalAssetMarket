@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 from ._constants import ConstantsTelegramUser, UserRole
@@ -10,7 +12,8 @@ class TelegramUser(models.Model):
     role = models.CharField(
         verbose_name=ConstantsTelegramUser.role,
         choices=UserRole.get_choices(),
-        max_length=UserRole.get_choice_max_length()
+        max_length=UserRole.get_choice_max_length(),
+        default=UserRole.user
     )
 
     balance = models.DecimalField(
@@ -19,7 +22,19 @@ class TelegramUser(models.Model):
         max_digits=12,
         default=0
     )
-    rating = models.DecimalField(verbose_name=ConstantsTelegramUser.rating, max_digits=3, decimal_places=2)
+    rating = models.DecimalField(
+        verbose_name=ConstantsTelegramUser.rating,
+        max_digits=3,
+        decimal_places=2,
+        default=0,
+        null=True
+    )
+
+    created_at = models.DateTimeField(
+        verbose_name=ConstantsTelegramUser.created_at,
+        auto_now_add=True,
+        null=True
+    )
 
     def __str__(self):
         return f'User: {self.username}({self.user_id})'

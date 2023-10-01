@@ -1,5 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 
+from dashboard.marketplace.dals.telegram_user_dal import TelegramUserDAL
 from data import config
 from data.config import I18N_DOMAIN, LOCALES_DIR
 from middlewares.localization_middleware import LocalizationMiddleware
@@ -11,3 +12,5 @@ _ = i18n.gettext
 __ = i18n.lazy_gettext
 
 dp = Dispatcher(bot)
+
+telegram_user_dal = TelegramUserDAL()

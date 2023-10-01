@@ -1,6 +1,5 @@
-import logging
-
 from aiogram import Dispatcher
+from loguru import logger
 
 from middlewares.logging_middleware import LoggingMiddleware
 
@@ -18,11 +17,14 @@ async def setup_middlewares(dp: Dispatcher):
 
 
 if __name__ == '__main__':
+    from utils import django_configure
+    django_configure.configure_django()
+
     from aiogram.utils import executor
     from handlers import dp
 
     try:
         executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
     except Exception as err:
-        logging.exception(err)
+        logger.error(err)
 

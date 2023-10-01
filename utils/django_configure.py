@@ -15,7 +15,7 @@ def configure_django():
     import os
     import django
     set_django_conf_name('dashboard.marketplace')
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dashboard.admin.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dashboard.dashboard.settings")
     os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
     django.setup()
 
