@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 from loguru import logger
 
+
 from middlewares.logging_middleware import LoggingMiddleware
 
 
@@ -17,6 +18,7 @@ async def setup_middlewares(dp: Dispatcher):
 
 
 if __name__ == '__main__':
+
     from utils import django_configure
     django_configure.configure_django()
 

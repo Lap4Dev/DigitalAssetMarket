@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from dashboard.marketplace.dals.telegram_user_dal import ShowUserSchema
+from data.config import SUPPORT_SERVICE
 
 
 class BotCommand:
@@ -73,3 +74,13 @@ class Messages:
                f"📉 Number of Purchased Files: <code>{profile_info.purchased_files_count}</code>\n\n" \
                f"📈 Number of Sold Files: <code>{profile_info.sold_files_count}</code>\n\n" \
                f"⭐ Your Rating: <code>{profile_info.user_rating}</code>"
+
+    CARE_SERVICE_MESSAGE = 'We are all imperfect! 😢\n\n' \
+                           'If you have any difficulties with the functions or you have wishes to expand the' \
+                           ' functionality, contact the care service manager @' + SUPPORT_SERVICE
+
+    @staticmethod
+    def get_balance_message(balance: float, username: str, user_id: int):
+
+        return f"🥷 <b>{username}</b> <b>[{user_id}]</b>\n\n" \
+               f"💰 Your balance: <code>{balance}</code>"

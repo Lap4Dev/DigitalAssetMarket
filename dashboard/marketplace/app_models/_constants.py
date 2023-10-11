@@ -49,6 +49,7 @@ class StatusState(BaseConstants):
 
 
 class ConstantsTelegramUser(BaseConstants):
+    id: str = 'ID'
     user_id: str = 'User ID'
     username: str = '@username'
     role: str = 'Role'
@@ -106,6 +107,7 @@ class ConstantsTransaction(BaseConstants):
     transaction_id: str = 'Transaction ID'
     wallet: str = 'Wallet'
     transfer_amount: str = 'Transfer amount'
+    transaction_message: str = 'Transaction message'
     transaction_hash: str = 'Transaction hash'
     transaction_status: str = 'Status'
     created_at: str = 'Created at'

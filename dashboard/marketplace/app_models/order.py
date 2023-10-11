@@ -23,6 +23,9 @@ class Order(models.Model):
         verbose_name=ConstantsOrder.order_status
     )
 
+    def __str__(self):
+        return f'Order #{self.order_id} of {self.user}'
+
     class Meta:
         verbose_name = ConstantsOrder.Meta.verbose_name
         verbose_name_plural = ConstantsOrder.Meta.verbose_name_plural
