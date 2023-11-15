@@ -1,5 +1,3 @@
-import datetime
-
 from django.db import models
 
 from ._constants import ConstantsTelegramUser, UserRole
