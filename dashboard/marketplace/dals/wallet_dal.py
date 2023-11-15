@@ -1,7 +1,7 @@
 import dataclasses
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
-from crypto.tron import TronMultiWallet, tron_multi_wallet
+from crypto.tron import tron_multi_wallet
 from dashboard.marketplace.app_models import Wallet, SupportedWalletCurrency, SupportedWalletSubnetworks, TelegramUser
 from dashboard.marketplace.dals import BaseDAL
 from dashboard.marketplace.dals.telegram_user_dal import TelegramUserDAL
@@ -56,3 +56,12 @@ class WalletDAL:
     ) -> Tuple[Optional[Wallet], bool]:
 
         return await self.generate_wallet(user, wallet_data)
+
+    @BaseDAL.dal_logging_decorator
+    async def get_all_wallets_for_user_by_user_id(self, user_id: int) -> List[Wallet]:
+        user = await self.telegram_user_dal.get_user_by_id(user_id)
+        if not user:
+            return []
+
+        wallets = Wallet.objects.filter(user=user).all()
+        return wallets

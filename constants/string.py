@@ -56,8 +56,8 @@ class Buttons:
 class Messages:
     ACTION_NOT_FOUND_ERROR = 'Sorry, but there is no such action :('
     WELCOME_MESSAGE = 'Welcome to the world of FileCryptoMarketplace - the first marketplace where file exchange has ' \
-                      'become simpler and more secure thanks to cryptocurrency! Here, we emphasize that you can purchase' \
-                      ' files only through unique links.\n\n' \
+                      'become simpler and more secure thanks to cryptocurrency! Here, we emphasize' \
+                      ' that you can purchase files only through unique links.\n\n' \
                       'With FileCryptoMarketplace, you don\'t buy files as usual. ' \
                       'Instead, you\'ll have the opportunity to gain access to valuable information and resources by ' \
                       'following reliable links that ensure the security of your purchase. Our system guarantees ' \

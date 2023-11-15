@@ -16,7 +16,6 @@ class TelegramUser(models.Model):
         max_length=UserRole.get_choice_max_length(),
         default=UserRole.user
     )
-
     balance = models.DecimalField(
         verbose_name=ConstantsTelegramUser.balance,
         decimal_places=2,

@@ -1,4 +1,5 @@
 import dataclasses
+from decimal import Decimal
 from typing import Optional, Tuple
 
 from . import BaseDAL
@@ -61,3 +62,15 @@ class TelegramUserDAL:
             return 0
 
         return float(user.balance)
+
+    @staticmethod
+    @BaseDAL.dal_logging_decorator
+    async def set_user_balance(user_id: int, amount: Decimal) -> bool:
+        """return True if success else False"""
+        user: Optional[TelegramUser] = await TelegramUserDAL.get_user_by_id(user_id)
+        if user is None:
+            return False
+
+        user.balance = amount
+        user.save()
+        return True
