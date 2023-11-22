@@ -9,8 +9,8 @@ from dashboard.marketplace.dals.telegram_user_dal import TelegramUserDAL
 
 @dataclasses.dataclass
 class CreateWalletData:
-    wallet_currency: Optional[str] = SupportedWalletCurrency.usdt
-    wallet_subnetwork: Optional[str] = SupportedWalletSubnetworks.trc_20
+    wallet_currency: str = SupportedWalletCurrency.usdt
+    wallet_subnetwork: str = SupportedWalletSubnetworks.trc_20
 
 
 class WalletDAL:
@@ -29,12 +29,12 @@ class WalletDAL:
             user=user,
             wallet_address=tron_wallet.address,
             wallet_private_key=tron_wallet.private_key,
-
             defaults={
-                'wallet_currency': wallet_data.wallet_currency,
-                'wallet_subnetwork': wallet_data.wallet_subnetwork
+                'wallet_currency': wallet_data.wallet_currency.lower(),
+                'wallet_subnetwork': wallet_data.wallet_subnetwork.lower()
             }
         )
+
         return new_wallet, _
 
     @BaseDAL.dal_logging_decorator

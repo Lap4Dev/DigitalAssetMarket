@@ -38,7 +38,7 @@ class SupportedWalletCurrency(BaseConstants):
 
 @dataclass
 class SupportedWalletSubnetworks(BaseConstants):
-    trc_20: str = 'TRC-20'
+    trc_20: str = 'TRC_20'
 
 
 @dataclass

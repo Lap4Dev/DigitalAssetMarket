@@ -12,6 +12,7 @@ class Wallet(models.Model):
         verbose_name=ConstantsWallet.wallet_private_key,
         default=""
     )
+    print(SupportedWalletSubnetworks.get_choices())
     wallet_currency = models.CharField(
         verbose_name=ConstantsWallet.wallet_currency,
         choices=SupportedWalletCurrency.get_choices(),
