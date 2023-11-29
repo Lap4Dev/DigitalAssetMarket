@@ -38,7 +38,7 @@ class SupportedWalletCurrency(BaseConstants):
 
 @dataclass
 class SupportedWalletSubnetworks(BaseConstants):
-    trc_20: str = 'TRC-20'
+    trc_20: str = 'TRC_20'
 
 
 @dataclass
@@ -49,6 +49,7 @@ class StatusState(BaseConstants):
 
 
 class ConstantsTelegramUser(BaseConstants):
+    id: str = 'ID'
     user_id: str = 'User ID'
     username: str = '@username'
     role: str = 'Role'
@@ -106,6 +107,7 @@ class ConstantsTransaction(BaseConstants):
     transaction_id: str = 'Transaction ID'
     wallet: str = 'Wallet'
     transfer_amount: str = 'Transfer amount'
+    transaction_message: str = 'Transaction message'
     transaction_hash: str = 'Transaction hash'
     transaction_status: str = 'Status'
     created_at: str = 'Created at'
@@ -114,3 +116,17 @@ class ConstantsTransaction(BaseConstants):
     class Meta:
         verbose_name: str = 'Transaction'
         verbose_name_plural: str = 'Transactions'
+
+
+class ConstantsOrder(BaseConstants):
+    order_id: str = 'Order ID'
+    transaction: str = 'Transaction'
+    user: str = 'User'
+    file: str = 'File'
+    order_amount: str = 'Order total amount'
+    order_date: str = 'Order date'
+    order_status: str = 'Status'
+
+    class Meta:
+        verbose_name: str = 'Order'
+        verbose_name_plural: str = 'Orders'

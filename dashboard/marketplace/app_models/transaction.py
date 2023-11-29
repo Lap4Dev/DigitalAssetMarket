@@ -14,11 +14,14 @@ class Transaction(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(0)]
     )
+    transaction_message = models.CharField(max_length=25,
+                                           verbose_name=ConstantsTransaction.transaction_message, default='')
     transaction_hash = models.CharField(max_length=256, verbose_name=ConstantsTransaction.transaction_hash)
     transaction_status = models.CharField(
         verbose_name=ConstantsTransaction.transaction_status,
         choices=StatusState.get_choices(),
-        max_length=StatusState.get_choice_max_length()
+        max_length=StatusState.get_choice_max_length(),
+        default=StatusState.in_process
     )
     created_at = models.DateTimeField(verbose_name=ConstantsTransaction.created_at, auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name=ConstantsTransaction.updated_at, auto_now=True)

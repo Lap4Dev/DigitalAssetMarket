@@ -1,12 +1,11 @@
-import datetime
-
 from django.db import models
 
 from ._constants import ConstantsTelegramUser, UserRole
 
 
 class TelegramUser(models.Model):
-    user_id = models.IntegerField(verbose_name=ConstantsTelegramUser.user_id, primary_key=True)
+    id = models.AutoField(verbose_name=ConstantsTelegramUser.id, primary_key=True)
+    user_id = models.IntegerField(verbose_name=ConstantsTelegramUser.user_id, unique=True)
     username = models.CharField(verbose_name=ConstantsTelegramUser.username, max_length=32, default=None)
 
     role = models.CharField(
@@ -15,7 +14,6 @@ class TelegramUser(models.Model):
         max_length=UserRole.get_choice_max_length(),
         default=UserRole.user
     )
-
     balance = models.DecimalField(
         verbose_name=ConstantsTelegramUser.balance,
         decimal_places=2,
