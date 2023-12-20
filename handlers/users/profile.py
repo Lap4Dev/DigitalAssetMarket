@@ -1,4 +1,5 @@
 from aiogram import types
+from aiogram.dispatcher import FSMContext
 
 from constants.string import Buttons, Messages
 from dashboard.marketplace.dals.telegram_user_dal import ShowUserSchema
@@ -32,9 +33,10 @@ async def show_inline_balance_menu(callback: types.CallbackQuery, balance: float
     ), reply_markup=await get_balance_menu_keyboard())
 
 
-@dp.callback_query_handler(text_contains=Buttons.BALANCE.callback_data)
+@dp.callback_query_handler(text_contains=Buttons.BALANCE.callback_data, state='*')
 @async_error_handler
-async def balance_handler(callback: types.CallbackQuery):
+async def balance_handler(callback: types.CallbackQuery, state: FSMContext):
+    await state.finish()
     balance = await telegram_user_dal.get_user_balance_by_id(callback.from_user.id)
     await show_inline_balance_menu(callback, balance or 0)
 
