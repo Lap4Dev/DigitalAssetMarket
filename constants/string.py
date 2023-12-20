@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from dashboard.marketplace.dals.telegram_user_dal import ShowUserSchema
-from data.config import SUPPORT_SERVICE
+from data.config import SUPPORT_SERVICE, WITHDRAW_FEE_AMOUNT
 
 
 class BotCommand:
@@ -52,6 +52,9 @@ class Buttons:
 
     RATING = InlineButton('Rating', 'rating')
 
+    YES = InlineButton('Yes', 'yes')
+    NO = InlineButton('No', 'no')
+
 
 class Messages:
     ACTION_NOT_FOUND_ERROR = 'Sorry, but there is no such action :('
@@ -66,9 +69,22 @@ class Messages:
                       'Let FileCryptoMarketplace become your trusted partner in the world ' \
                       'of file exchange, where security and convenience take precedence!'
 
+    POP_UP_BALANCE = 'Please enter the amount by which you want to top up the balance: '
+    INVALID_AMOUNT = 'The amount must be a number and greater then 0'
+    WITHDRAW_FEE = f'The withdrawal fee is {WITHDRAW_FEE_AMOUNT}%'
+    PRE_WITHDRAW = lambda amount: f'💰 Available amount: <code>{amount}</code>\n' \
+                                  f'🤏 ({Messages.WITHDRAW_FEE})\n\n' \
+                                  '➡️ Please enter the amount you wish to withdraw:'
+    ENTER_USDT_WALLET = '💠 Please enter valid <b>USDT TRC-20</b> wallet:'
+    AMOUNT_MUST_BE_LOWER_THEN_BALANCE = 'The amount must be lower then balance!'
+    VALID_WALLET_ADDRESS = lambda wallet: '✒️ Make sure this is your <b>USDT TRC-20</b> network wallet address:\n' \
+                                          f'<code>{wallet}</code>'
+    ERROR_OCCURRED = 'Oops, an error occurred, please try again :('
+    WITHDRAW_REQUEST_SUBMITTED = 'Withdrawal request successfully submitted!\n' \
+                                 'The application is usually processed within 24 hours'
+
     @staticmethod
     def get_profile_message(profile_info: ShowUserSchema):
-
         return f"🥷 <b>{profile_info.username}</b> <b>[{profile_info.user_id}]</b>\n\n" \
                f"💰 Balance: <code>{profile_info.balance}</code>\n\n" \
                f"📉 Number of Purchased Files: <code>{profile_info.purchased_files_count}</code>\n\n" \
@@ -81,6 +97,17 @@ class Messages:
 
     @staticmethod
     def get_balance_message(balance: float, username: str, user_id: int):
-
         return f"🥷 <b>{username}</b> <b>[{user_id}]</b>\n\n" \
                f"💰 Your balance: <code>{balance}</code>"
+
+    @staticmethod
+    def withdraw_request_notification(
+            request_id: int, user_id: int, username: str,
+            withdraw_amount: float, withdraw_address: str, commission: float
+    ):
+        return f"<b>(--- WITHDRAW REQUEST #{request_id}--- )</b>\n\n" \
+               f"🥷 <b>@{username}</b> <b>[{user_id}]</b>\n" \
+               f"💰 Amount: <code>{withdraw_amount:.2f}</code>\n" \
+               f"🎁 Commission: <code>{commission:.2f}</code>\n" \
+               f"🪙 For withdrawal: <code>{(withdraw_amount-commission):.2f}</code>\n\n" \
+               f"💠 Address: <code>{withdraw_address}</code>"
