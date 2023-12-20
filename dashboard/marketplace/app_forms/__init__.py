@@ -4,3 +4,4 @@ from .file_form import *
 from .review_form import *
 from .transaction_form import *
 from .order_form import *
+from .withdraw_form import *
