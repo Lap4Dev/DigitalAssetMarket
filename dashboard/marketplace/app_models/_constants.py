@@ -118,6 +118,22 @@ class ConstantsTransaction(BaseConstants):
         verbose_name_plural: str = 'Transactions'
 
 
+class ConstantsWithdraw(BaseConstants):
+    id: str = 'ID'
+    user: str = 'User'
+    wallet: str = 'Wallet'
+    amount: str = 'Request amount'
+    commission: str = 'Commission'
+    status: str = 'Withdraw status'
+
+    created_at: str = 'Created at'
+    updated_at: str = 'Updated at'
+
+    class Meta:
+        verbose_name: str = 'Withdraw'
+        verbose_name_plural: str = 'Withdrawal'
+
+
 class ConstantsOrder(BaseConstants):
     order_id: str = 'Order ID'
     transaction: str = 'Transaction'
