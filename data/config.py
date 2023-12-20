@@ -13,6 +13,8 @@ DEFAULT_PASSPHRASE = None
 
 MNEMONIC_PHRASE = os.getenv('MNEMONIC_PHRASE', default=DEFAULT_MNEMONIC)
 PASSPHRASE = os.getenv('PASSPHRASE', default=DEFAULT_PASSPHRASE)
+WITHDRAW_FEE_AMOUNT = float(os.getenv('WITHDRAW_FEE_AMOUNT', default=10))
+ADMIN_CHANNEL_ID = os.getenv('ADMIN_CHANNEL_ID')
 # ---
 
 BASE_DIR = Path(__file__).parent.parent

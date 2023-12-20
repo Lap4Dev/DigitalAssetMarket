@@ -1,7 +1,7 @@
 from functools import wraps
 
 from aiogram import types
-from loguru import logger
+from data.logger import logger
 
 
 def async_error_handler(func):
